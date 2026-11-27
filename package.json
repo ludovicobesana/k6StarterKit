@@ -9,15 +9,16 @@
 	},
 	"packageManager": "npm@10.9.2",
 	"scripts": {
-		"format": "prettier --write \"examples/**/*.ts\" \"scripts/**/*.mjs\"",
-		"format:check": "prettier --check \"examples/**/*.ts\" \"scripts/**/*.mjs\"",
+		"format": "prettier --write \"examples/**/*.ts\" \"scripts/**/*.mjs\" \"src/**/*.ts\" \"fixtures/**/*.mjs\" \"tests/**/*.mjs\"",
+		"format:check": "prettier --check \"examples/**/*.ts\" \"scripts/**/*.mjs\" \"src/**/*.ts\" \"fixtures/**/*.mjs\" \"tests/**/*.mjs\"",
 		"typecheck": "tsc --noEmit",
 		"runtime:check": "node scripts/check-runtime.mjs",
 		"smoke:toolchain": "npm run runtime:check && k6 run examples/toolchain/smoke.ts",
 		"lint": "npm run typecheck && node --check scripts/check-runtime.mjs",
-		"test": "node --test scripts/check-runtime.test.mjs tests/integration/fixture.test.mjs",
+		"test": "node --test scripts/check-runtime.test.mjs tests/integration/fixture.test.mjs tests/unit/config.test.mjs",
 		"fixture": "node fixtures/server.mjs",
-		"test:fixture": "node --test tests/integration/fixture.test.mjs"
+		"test:fixture": "node --test tests/integration/fixture.test.mjs",
+		"test:config": "node --test tests/unit/config.test.mjs"
 	},
 	"devDependencies": {
 		"@types/k6": "0.57.1",
